@@ -9,4 +9,5 @@ const router = express.Router();
 // rotas base
 router.use('/users/', users);
 
-export default router;
+// export default router;
+module.exports = router;
