@@ -1,5 +1,6 @@
 const UsersModel = require('../model/Users');
 const usersModel = new UsersModel();
+const cryptoPassword = require('../utils/cryptoPassword');
 
 class Users {
   get(req, res) {
@@ -20,6 +21,14 @@ class Users {
 
     // res.send(`Eu recebi o parametro ${req.params.id}`);
   }
+
+  // add(req, res) {
+  //   const data = {
+  //     ...req.body,
+  //     password: cryptoPassword(req.body.password)
+  //   }
+  // }
+
 }
 
 module.exports = Users;

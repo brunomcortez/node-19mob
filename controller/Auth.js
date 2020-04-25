@@ -1,18 +1,27 @@
 const UserModel = require("../model/Users");
 const userModel = new UserModel();
+const createToken = require('../utils/createToken');
+
 class Auth {
   validate(req, res) {
     const { email, password } = req.body;
+    const conditions = [
+      { field: 'email', operator: '==', value: email},
+      { field: 'password', operator: '==', value: password}
+    ]
+
 
     userModel
-      .getBy({email, password})
+      // .getBy({email, password})
+      .getBy(conditions)
       .then((users) => {
         if (users.empty) {
           res.status(401).send({ message: "Usuario nao autorizado" });
           return;
         }
 
-        res.json(users.docs[0].data());
+        res.send({token: createToken({id: users.docs[0].id})});
+        // res.json(users.docs[0].data());
       })
       .catch((error) => {
         res.status(500).send(error);

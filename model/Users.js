@@ -20,9 +20,13 @@ class Users extends BaseModel {
   getBy(conditions) {
     let query = this.db.collection("users");
 
-    for (let name in conditions) {
-      query = query.where(name, "==", conditions[name]);
-    }
+    conditions.forEach(({ field, operator , value }) =>
+            query = query.where(field, operator, value)
+        );
+
+    // for (let name in conditions) {
+    //   query = query.where(name, "==", conditions[name]);
+    // }
 
     return query.get();
   }
