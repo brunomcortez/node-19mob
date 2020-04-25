@@ -5,7 +5,7 @@ class Auth {
     const { email, password } = req.body;
 
     userModel
-      .getBy(email, password)
+      .getBy({email, password})
       .then((users) => {
         if (users.empty) {
           res.status(401).send({ message: "Usuario nao autorizado" });
