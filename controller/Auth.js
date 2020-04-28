@@ -10,10 +10,8 @@ class Auth {
       { field: 'password', operator: '==', value: password}
     ]
 
-
     userModel
-      // .getBy({email, password})
-      .getBy(conditions)
+      .getBy(conditions) // .getBy({email, password})
       .then((users) => {
         if (users.empty) {
           res.status(401).send({ message: "Usuario nao autorizado" });

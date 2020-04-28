@@ -1,15 +1,7 @@
-const express = require("express");
-const routes = require("./routes");
-const bodyParser = require("body-parser");
+const app = require('./server.js');
 
-const app = express();
-
-app.use(bodyParser.json());
-
-app.use(routes);
-
+// server running
 const port = process.env.PORT || 3000;
-
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
